@@ -251,6 +251,42 @@ class ProviderRegistry:
                 url="https://pinket.com/api/cu/v2/phone-verification",
                 data_template={"phoneNumber": "{phone}"},
             ),
+            # Updated and new providers (2025)
+            Provider(
+                name="Cafebazaar",
+                url="https://api.cafebazaar.ir/rest-v1/process/GetOtpTokenRequest",
+                data_template={"msisdn": "{phone}"},
+            ),
+            Provider(
+                name="Emtiyaz",
+                url="https://api.emtiyaz.app/v1/auth/login",
+                data_template={"mobile": "{phone}"},
+            ),
+            Provider(
+                name="Torob",
+                url="https://api.torob.com/v4/user/phone/send-pin/",
+                data_template={"phone_number": "{phone}"},
+            ),
+            Provider(
+                name="Basalam",
+                url="https://api.basalam.com/v1/users/phone/otp/",
+                data_template={"phone": "{phone}"},
+            ),
+            Provider(
+                name="Filmnet",
+                url="https://api-v2.filmnet.ir/api/v1/user/login/",
+                data_template={"username": "{phone}"},
+            ),
+            Provider(
+                name="Irancell",
+                url="https://my.irancell.ir/api/auth/send-otp",
+                data_template={"msisdn": "{phone}"},
+            ),
+            Provider(
+                name="Hamkaran",
+                url="https://app.hamkaran.com/api/v1/auth/request-otp",
+                data_template={"mobile": "{phone}"},
+            ),
         ]
         self.providers.extend(default_providers)
 

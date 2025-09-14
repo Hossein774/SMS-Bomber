@@ -56,6 +56,12 @@ async def bomber(config: AppConfig) -> NoReturn:
     client = APIClient(timeout=config.timeout, proxy=config.proxy_dict)
 
     providers = registry.get_all_providers()
+    
+    # Optional: Quick health check
+    if config.verbose:
+        ui.console.print(f"[yellow]Loaded {len(providers)} providers[/yellow]")
+        ui.console.print("[cyan]Use 'python update_providers.py' to test provider health[/cyan]")
+    
     total_requests = len(providers) * config.count
     tracker = ProgressTracker(total_requests)
 

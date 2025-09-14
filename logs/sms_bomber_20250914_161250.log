@@ -1,0 +1,68 @@
+2025-09-14 16:12:50 - ERROR - Request failed for Snapp V2: 400, message='Bad Request', url='https://digitalsignup.snapp.ir/ds3/api/v3/otp?utm_source=snapp.ir&utm_medium=website-button&utm_campaign=menu&cellphone=%7Bphone%7D'
+2025-09-14 16:12:50 - ERROR - Request failed for Classino: Cannot connect to host student.classino.com:443 ssl:default [getaddrinfo failed]
+2025-09-14 16:12:50 - ERROR - Request failed for Snapp V1: 500, message='Internal Server Error', url='https://api.snapp.ir/api/v1/sms/link'
+2025-09-14 16:12:51 - ERROR - Request failed for Zigap: 400, message='Bad Request', url='https://api-gateway.zigap.ir/api/v1.9/authenticate/sendotp'
+2025-09-14 16:12:51 - ERROR - Request failed for SMS.ir: 404, message='Not Found', url='https://appapi.sms.ir/api/app/auth/sign-up/verification-code'
+2025-09-14 16:12:51 - ERROR - Request failed for Tap33: 406, message='Not Acceptable', url='https://tap33.me/api/v2/user'
+2025-09-14 16:12:51 - ERROR - Request failed for Anargift: Cannot connect to host api.anargift.com:443 ssl:default [getaddrinfo failed]
+2025-09-14 16:12:52 - ERROR - Request failed for Tapsi: 406, message='Not Acceptable', url='https://api.tapsi.ir/api/v2.2/user'
+2025-09-14 16:12:52 - ERROR - Request failed for IToll: 422, message='Unprocessable Content', url='https://app.itoll.com/api/v1/auth/login'
+2025-09-14 16:12:52 - ERROR - Request failed for Hamrah-Mechanic: 400, message='Bad Request', url='https://www.hamrah-mechanic.com/api/v1/membership/otp'
+2025-09-14 16:12:52 - ERROR - Request failed for Abantether: 404, message='Not Found', url='https://abantether.com/users/register/phone/send/'
+2025-09-14 16:12:52 - ERROR - Request failed for Lendo: 498, message='Client Error', url='https://api.lendo.ir/api/customer/auth/send-otp'
+2025-09-14 16:12:52 - ERROR - Request failed for Tebinja: 429, message='Too Many Requests', url='https://www.tebinja.com/api/v1/users'
+2025-09-14 16:12:52 - ERROR - Request failed for Achareh: 
+2025-09-14 16:12:54 - ERROR - Request failed for OKCS: 
+2025-09-14 16:12:54 - ERROR - Request failed for Bit24: 
+2025-09-14 16:12:55 - ERROR - Request failed for Rojashop: 
+2025-09-14 16:12:55 - ERROR - Request failed for Paklean: 
+2025-09-14 16:12:55 - ERROR - Request failed for Khodro45: 
+2025-09-14 16:12:57 - ERROR - Request failed for Delino: 
+2025-09-14 16:12:57 - ERROR - Request failed for DigikalaJet: 
+2025-09-14 16:12:57 - ERROR - Request failed for Miare: 
+2025-09-14 16:12:57 - ERROR - Request failed for Dosma: 
+2025-09-14 16:12:57 - ERROR - Request failed for Ostadkr: 
+2025-09-14 16:12:59 - ERROR - Request failed for Sibbazar: 
+2025-09-14 16:12:59 - ERROR - Request failed for Namava: 
+2025-09-14 16:13:00 - ERROR - Request failed for Shab: 
+2025-09-14 16:13:00 - ERROR - Request failed for Bitpin: 
+2025-09-14 16:13:00 - ERROR - Request failed for Taaghche: 
+2025-09-14 16:13:02 - ERROR - Request failed for Trip.ir: 
+2025-09-14 16:13:02 - ERROR - Request failed for pinket: 
+2025-09-14 16:13:02 - ERROR - Request failed for Cafebazaar: 
+2025-09-14 16:13:02 - ERROR - Request failed for Emtiyaz: 
+2025-09-14 16:13:02 - ERROR - Request failed for Torob: 
+2025-09-14 16:13:04 - ERROR - Request failed for Basalam: 
+2025-09-14 16:13:04 - ERROR - Request failed for Filmnet: 
+2025-09-14 16:13:05 - ERROR - Request failed for Irancell: 
+2025-09-14 16:13:05 - ERROR - Request failed for Hamkaran: 
+2025-09-14 16:13:05 - ERROR - Request failed for Snapp V1: 
+2025-09-14 16:13:06 - ERROR - Request failed for Snapp V2: 400, message='Bad Request', url='https://digitalsignup.snapp.ir/ds3/api/v3/otp?utm_source=snapp.ir&utm_medium=website-button&utm_campaign=menu&cellphone=%7Bphone%7D'
+2025-09-14 16:13:06 - ERROR - Request failed for Classino: Cannot connect to host student.classino.com:443 ssl:default [getaddrinfo failed]
+2025-09-14 16:13:06 - ERROR - Request failed for Zigap: 400, message='Bad Request', url='https://api-gateway.zigap.ir/api/v1.9/authenticate/sendotp'
+2025-09-14 16:13:07 - ERROR - Request failed for Achareh: 400, message='Bad Request', url='https://api.achareh.co/v2/accounts/login/'
+2025-09-14 16:13:07 - ERROR - Request failed for SMS.ir: 404, message='Not Found', url='https://appapi.sms.ir/api/app/auth/sign-up/verification-code'
+2025-09-14 16:13:07 - ERROR - Request failed for Tap33: 406, message='Not Acceptable', url='https://tap33.me/api/v2/user'
+2025-09-14 16:13:07 - ERROR - Request failed for Anargift: Cannot connect to host api.anargift.com:443 ssl:default [getaddrinfo failed]
+2025-09-14 16:13:07 - ERROR - Request failed for Tapsi: 406, message='Not Acceptable', url='https://api.tapsi.ir/api/v2.2/user'
+2025-09-14 16:13:08 - ERROR - Request failed for IToll: 422, message='Unprocessable Content', url='https://app.itoll.com/api/v1/auth/login'
+2025-09-14 16:13:08 - ERROR - Request failed for Hamrah-Mechanic: 400, message='Bad Request', url='https://www.hamrah-mechanic.com/api/v1/membership/otp'
+2025-09-14 16:13:08 - ERROR - Request failed for Abantether: 404, message='Not Found', url='https://abantether.com/users/register/phone/send/'
+2025-09-14 16:13:08 - ERROR - Request failed for Lendo: 498, message='Client Error', url='https://api.lendo.ir/api/customer/auth/send-otp'
+2025-09-14 16:13:08 - ERROR - Request failed for Tebinja: 429, message='Too Many Requests', url='https://www.tebinja.com/api/v1/users'
+2025-09-14 16:13:08 - ERROR - Request failed for Paklean: 429, message='Too Many Requests', url='https://client.api.paklean.com/download'
+2025-09-14 16:13:09 - ERROR - Request failed for Bit24: 404, message='Page not found: /bit24/api/v3/auth/check-mobile', url='https://bit24.cash/auth/bit24/api/v3/auth/check-mobile'
+2025-09-14 16:13:09 - ERROR - Request failed for Delino: 412, message='Precondition Failed', url='https://www.delino.com/user/register'
+2025-09-14 16:13:09 - ERROR - Request failed for Miare: 400, message='Bad Request', url='https://www.miare.ir/api/otp/driver/request/'
+2025-09-14 16:13:09 - ERROR - Request failed for Dosma: Cannot connect to host app.dosma.ir:443 ssl:True [SSLCertVerificationError: (1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1000)')]
+2025-09-14 16:13:10 - ERROR - Request failed for Sibbazar: 404, message='Not Found', url='https://sandbox.sibbazar.com/api/v1/user/invite'
+2025-09-14 16:13:10 - ERROR - Request failed for Shab: 405, message='Method Not Allowed', url='https://api.shab.ir/api/fa/sandbox/v_1_4/auth/check-mobile'
+2025-09-14 16:13:10 - ERROR - Request failed for Taaghche: 403, message='Forbidden', url='https://gw.taaghche.com/v4/site/auth/signup'
+2025-09-14 16:13:10 - ERROR - Request failed for Bitpin: 404, message='Not Found', url='https://api.bitpin.org/v2/usr/signin/'
+2025-09-14 16:13:10 - ERROR - Request failed for Cafebazaar: 400, message='Bad Request', url='https://api.cafebazaar.ir/rest-v1/process/GetOtpTokenRequest'
+2025-09-14 16:13:10 - ERROR - Request failed for Torob: 403, message='Forbidden', url='https://api.torob.com/v4/user/phone/send-pin/'
+2025-09-14 16:13:10 - ERROR - Request failed for Filmnet: 404, message='Not Found', url='https://api-v2.filmnet.ir/api/v1/user/login/'
+2025-09-14 16:13:10 - ERROR - Request failed for Basalam: 404, message='Not Found', url='https://api.basalam.com/v1/users/phone/otp/'
+2025-09-14 16:13:11 - ERROR - Request failed for Irancell: 405, message='Not Allowed', url='https://my.irancell.ir/api/auth/send-otp'
+2025-09-14 16:13:11 - ERROR - Request failed for Hamkaran: Cannot connect to host app.hamkaran.com:443 ssl:default [[SSL: TLSV1_UNRECOGNIZED_NAME] tlsv1 unrecognized name (_ssl.c:1000)]
+2025-09-14 16:13:12 - ERROR - Request failed for Emtiyaz: 
