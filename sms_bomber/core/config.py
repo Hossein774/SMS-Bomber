@@ -16,6 +16,8 @@ class AppConfig:
     proxy: Optional[str] = None
     timeout: float = 2.5
     log_dir: Path = Path("logs")
+    sms_only: bool = False
+    calls_only: bool = False
 
     @property
     def proxy_dict(self) -> Optional[dict]:

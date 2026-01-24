@@ -31,9 +31,10 @@ class ProgressTracker:
         """Update progress statistics."""
         provider = result["provider"]
         success = result["success"]
+        result_type = result.get("type", "sms")  # Default to SMS for backward compatibility
 
         if provider not in self.provider_stats:
-            self.provider_stats[provider] = {"succeeded": 0, "failed": 0}
+            self.provider_stats[provider] = {"succeeded": 0, "failed": 0, "type": result_type}
 
         if success:
             self.stats.succeeded += 1
@@ -46,6 +47,7 @@ class ProgressTracker:
         """Generate a rich table with current statistics."""
         table = Table(title="Bombing Statistics")
         table.add_column("Provider")
+        table.add_column("Type")
         table.add_column("Succeeded")
         table.add_column("Failed")
         table.add_column("Success Rate")
@@ -53,8 +55,11 @@ class ProgressTracker:
         for provider, stats in self.provider_stats.items():
             total = stats["succeeded"] + stats["failed"]
             success_rate = (stats["succeeded"] / total * 100) if total > 0 else 0
+            provider_type = stats.get("type", "sms").upper()
+            
             table.add_row(
                 provider,
+                provider_type,
                 str(stats["succeeded"]),
                 str(stats["failed"]),
                 f"{success_rate:.1f}%",

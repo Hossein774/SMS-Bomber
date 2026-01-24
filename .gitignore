@@ -1,0 +1,47 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs (keep structure, ignore content)
+logs/*.log
+!logs/.gitkeep
+
+# Backup files
+*.backup
+providers_backup_*.json
+
+# Build/Distribution
+build/
+dist/
+*.egg-info/
+
+# Cache
+.cache/
+.pytest_cache/
+
+# Local data
+data/discovered_providers.json
+data/discovered_providers.py
+data/analytics/
+data/profiles/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+.env.local

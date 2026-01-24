@@ -21,7 +21,7 @@ class ConsoleUI:
         """Display application banner."""
         banner = """
         ╔═══════════════════════════════════════╗
-        ║             SMS Bomber 2.0            ║
+        ║         SMS & Call Bomber 2.0         ║
         ╚═══════════════════════════════════════╝
         """
         self.console.print(banner, style="cyan bold")
@@ -36,6 +36,15 @@ class ConsoleUI:
         table.add_row("Count", str(config.count))
         table.add_row("Threads", str(config.threads))
         table.add_row("Proxy", config.proxy or "None")
+        
+        # Show bombing mode
+        if config.sms_only:
+            mode = "SMS Only"
+        elif config.calls_only:
+            mode = "Calls Only"
+        else:
+            mode = "SMS + Calls"
+        table.add_row("Mode", mode)
 
         self.console.print(table)
 
