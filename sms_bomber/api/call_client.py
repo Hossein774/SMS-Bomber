@@ -68,6 +68,7 @@ class CallBomberClient:
                             "success": success,
                             "provider": provider_name,
                             "status_code": response.status,
+                            "response": body[:500] if body else "",  # Include response body (truncated)
                             "type": "call"
                         }
                 else:
@@ -78,8 +79,23 @@ class CallBomberClient:
                             "success": success,
                             "provider": provider_name,
                             "status_code": response.status,
+                            "response": body[:500] if body else "",  # Include response body (truncated)
                             "type": "call"
                         }
+        except asyncio.TimeoutError:
+            return {
+                "success": False,
+                "provider": provider_name,
+                "error": "Timeout - server took too long to respond",
+                "type": "call"
+            }
+        except aiohttp.ClientConnectorError as e:
+            return {
+                "success": False,
+                "provider": provider_name,
+                "error": f"Connection error: {str(e)}",
+                "type": "call"
+            }
         except Exception as e:
             logger.error(f"Call request failed for {provider_name}: {str(e)}")
             return {

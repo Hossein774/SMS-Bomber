@@ -18,6 +18,8 @@ class AppConfig:
     log_dir: Path = Path("logs")
     sms_only: bool = False
     calls_only: bool = False
+    no_delay: bool = False
+    call_delay: int = 20
 
     @property
     def proxy_dict(self) -> Optional[dict]:

@@ -1,4 +1,4 @@
-# 📱 SMS & Call Bomber 2.0
+# 📱 SMS & Call Bomber 3.0
 
 A comprehensive SMS and Call bombing tool for **security testing purposes only**.
 
@@ -6,8 +6,10 @@ A comprehensive SMS and Call bombing tool for **security testing purposes only**
 
 ## 🚀 Features
 
-- **SMS Bombing**: 17 verified working Iranian SMS providers (100% success rate)
-- **Call Bombing**: Voice OTP and callback flooding
+- **SMS Bombing**: 87 Iranian SMS providers
+- **Call Bombing**: 9 Voice OTP providers with configurable delays
+- **Smart Delay System**: Prevents rate limiting with customizable delays between calls
+- **Detailed Error Reporting**: See exactly why requests fail
 - **Provider Discovery**: Automatically find new SMS endpoints
 - **Health Monitoring**: Test and remove dead providers
 - **Proxy Support**: Rotate proxies to avoid blocks
@@ -64,14 +66,17 @@ pip install -r sms_bomber/requirements.txt
 
 ### Basic SMS Bombing
 ```bash
-# Combined SMS + Call bombing
+# Combined SMS + Call bombing (87 SMS + 9 Call providers)
 python run.py 09123456789 -c 3 -t 10 -v
 
-# SMS only
+# SMS only (87 providers)
 python run.py 09123456789 -c 5 -t 15 --sms-only
 
-# Calls only
-python run.py 09123456789 -c 3 -t 10 --calls-only
+# Calls only with 20s delay between each call
+python run.py 09123456789 -c 3 --calls-only -d 20 -v
+
+# Calls with no delay (all at once)
+python run.py 09123456789 -c 3 --calls-only --no-delay
 ```
 
 ### Arguments
@@ -80,10 +85,12 @@ python run.py 09123456789 -c 3 -t 10 --calls-only
 | `target` | Target phone number (09xxxxxxxxx) |
 | `-c, --count` | Number of bombing rounds (default: 1) |
 | `-t, --threads` | Concurrent threads (default: 5) |
-| `-v, --verbose` | Show detailed output |
+| `-d, --delay` | Delay in seconds between calls (default: 20) |
+| `-v, --verbose` | Show detailed output with error messages |
 | `-x, --proxy` | Proxy URL (http://host:port) |
 | `--sms-only` | SMS bombing only |
 | `--calls-only` | Call bombing only |
+| `--no-delay` | Send all calls at once (no delay) |
 
 ### 🔍 Provider Discovery (NEW!)
 
@@ -148,8 +155,23 @@ python integrate_providers.py --auto --min-confidence 0.7
 
 | Type | Count | Description |
 |------|-------|-------------|
-| SMS | 40+ | SMS OTP providers |
-| Call | 12+ | Voice verification providers |
+| SMS | 87 | SMS OTP providers |
+| Call | 9 | Voice verification providers |
+
+### SMS Providers Include:
+- **E-commerce**: Digikala, DigikalaJet, SnappFood, SnappMarket, SnappExpress, Okala, Takhfifan, Digistyle, Banimode, Timcheh
+- **Transport**: Snapp, Tapsi, Alibaba, Trip.ir, SnappTrip, Flightio, MrBilit, iToll
+- **Messaging**: Shad, Rubika, Gap
+- **Finance**: BitPin, Bit24, Bitbarg, DigiPay, Abantether, Iranicard
+- **Entertainment**: Namava, GapFilm, Filmnet, Aparat, Karnaval
+- **Health**: DrDr, Doctoreto, SnappDoctor, Bimito, Helsa, Pezeshket, Nobat
+- **Real Estate**: Divar, Sheypoor, Kilid, Otaghak, Shab
+- **Food Delivery**: Delino, Alopeyk
+- **And many more...**
+
+### Call Providers:
+- Digikala Call, Alibaba Call, Namava Call, Trip.ir Call, Snapp Call
+- Paklean Call, Novinbook Call, Azki Call, Ragham Call
 
 ## 🛡️ Tips for Better Success Rate
 
@@ -163,9 +185,13 @@ python integrate_providers.py --auto --min-confidence 0.7
    python run.py 09xxxxxxxxx -v
    ```
 
-3. **Discover new providers**
+3. **Adjust call delay for better delivery**
    ```bash
-   python discover_providers.py 09xxxxxxxxx --add
+   # 20 second delay between calls (default)
+   python run.py 09xxxxxxxxx --calls-only -d 20
+   
+   # No delay (all calls at once)
+   python run.py 09xxxxxxxxx --calls-only --no-delay
    ```
 
 4. **Use more threads for speed**
@@ -177,6 +203,21 @@ python integrate_providers.py --auto --min-confidence 0.7
    ```bash
    python run.py 09xxxxxxxxx --proxy http://proxy:port
    ```
+
+6. **Discover new providers**
+   ```bash
+   python discover_providers.py 09xxxxxxxxx --add
+   ```
+
+## 🔄 Recent Updates (v3.0)
+
+- Added 60+ new SMS providers from Iranian-Sms-Bomber project
+- Added 4 new call providers (Paklean, Novinbook, Azki, Ragham)
+- Added configurable delay between calls (`-d` / `--delay`)
+- Added `--no-delay` option to send all calls at once
+- Improved error reporting with HTTP status codes and response details
+- Fixed phone number formatting for providers using `{phone[1:]}`
+- Better verbose output showing exact failure reasons
 
 ## 📝 License
 

