@@ -1,0 +1,46 @@
+[
+  {
+    "name": "Taaghche OTP",
+    "url": "https://taaghche.com/v4/site/auth/login-with-otp",
+    "method": "POST",
+    "data_template": {
+      "phone": "{phone}"
+    },
+    "confidence": 0.65,
+    "working": false,
+    "source": "https://taaghche.com"
+  },
+  {
+    "name": "Taaghche OTP",
+    "url": "https://taaghche.com/v4/site/auth/signup-with-otp",
+    "method": "POST",
+    "data_template": {
+      "phone": "{phone}"
+    },
+    "confidence": 0.65,
+    "working": false,
+    "source": "https://taaghche.com"
+  },
+  {
+    "name": "Torob OTP",
+    "url": "https://torob.com/v4/user/phone/send-voice-otp/?phone_number=",
+    "method": "POST",
+    "data_template": {
+      "phoneNumber": "{phone}"
+    },
+    "confidence": 0.6,
+    "working": false,
+    "source": "https://torob.com"
+  },
+  {
+    "name": "Snappfood OTP",
+    "url": "https://snappfood.ir/v1/auth/otp/send",
+    "method": "POST",
+    "data_template": {
+      "phone": "{phone}"
+    },
+    "confidence": 0.5,
+    "working": false,
+    "source": "https://snappfood.ir"
+  }
+]
