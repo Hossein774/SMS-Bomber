@@ -47,7 +47,7 @@ SMS-Bomber/
 
 ```bash
 # Clone or download the project
-cd SMS-Bomber
+git clone https://github.com/Hossein774/SMS-Bomber
 
 # Install dependencies
 pip install -r sms_bomber/requirements.txt
